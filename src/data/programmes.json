@@ -235,11 +235,11 @@
       "tag": "Grade 10",
       "tagClass": "amber",
       "pitch": "Grade 10 decides Grade 12. Fix the foundation now, for R550 a month.",
-      "lede": "Every Tuesday evening, your Grade 10 learner joins a live two-hour Mathematics class online, in a group of no more than 10. The class builds the algebra, functions and number skills that Grade 11 and Grade 12 depend on, so gaps get fixed before they get expensive.",
+      "lede": "Every Friday evening, your Grade 10 learner joins a live two-hour Mathematics class online, in a group of no more than 10. The class builds the algebra, functions and number skills that Grade 11 and Grade 12 depend on, so gaps get fixed before they get expensive.",
       "forWho": "Grade 10 learners building the foundation for Mathematics in the FET phase.",
       "format": "Online, live, small group",
       "mode": "online",
-      "dayLabel": "Tuesdays",
+      "dayLabel": "Fridays",
       "time": "18:30–20:30",
       "hours": 2,
       "cap": 10,
@@ -271,7 +271,7 @@
           "price": 550,
           "standard": null,
           "unit": "/month",
-          "detail": "Tuesdays 18:30–20:30 · Feb to Nov"
+          "detail": "Fridays 18:30–20:30 · Feb to Nov"
         }
       ],
       "includes": [

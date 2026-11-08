@@ -36,7 +36,7 @@ window.GE_OFFERS = [
   "price": 550,
   "standard": null,
   "unit": "/month",
-  "detail": "Tuesdays 18:30–20:30 · Feb to Nov",
+  "detail": "Fridays 18:30–20:30 · Feb to Nov",
   "programme": "Grade 10 Weekly",
   "slug": "grade-10-weekly"
  },
