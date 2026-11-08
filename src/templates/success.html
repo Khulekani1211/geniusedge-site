@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% set body_class = "success-page" %}
+
+{% block content %}
+<section class="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap narrow center">
+    <div class="tick" aria-hidden="true">&#10003;</div>
+    <h1>Payment received. <span>Welcome to GeniusEdge.</span></h1>
+    <p class="sub" id="okLine">Your welcome pack is on its way by email and WhatsApp, with your timetable, class link and group invite.</p>
+    <p class="mono note small">Nothing in your inbox within 24 hours? Message us on WhatsApp at {{ site.phone }} and quote the name you paid under.</p>
+    <div class="cta-row center-row">
+      <a class="btn btn-coral" href="https://wa.me/{{ site.whatsapp }}" data-wa="general" target="_blank" rel="noopener">Message us on WhatsApp</a>
+      <a class="btn btn-ghost" href="index.html">Back to home</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,510 @@
+{
+  "site": {
+    "name": "GeniusEdge Tutoring",
+    "legalName": "GeniusEdge Tutoring (Khulekani Gcaba, sole proprietor)",
+    "domain": "https://geniusedge.co.za",
+    "email": "info@geniusedge.co.za",
+    "phone": "073 968 9838",
+    "whatsapp": "27739689838",
+    "area": "Johannesburg, Gauteng",
+    "tagline": "Giving you the academic edge",
+    "year": 2027,
+    "address": ""
+  },
+  "terms": [
+    {
+      "id": "T1",
+      "start": "2027-01-13",
+      "end": "2027-03-19"
+    },
+    {
+      "id": "T2",
+      "start": "2027-04-06",
+      "end": "2027-06-25"
+    },
+    {
+      "id": "T3",
+      "start": "2027-07-20",
+      "end": "2027-09-22"
+    },
+    {
+      "id": "T4",
+      "start": "2027-10-05",
+      "end": "2027-12-08"
+    }
+  ],
+  "programmes": [
+    {
+      "id": "g12",
+      "slug": "grade-12-weekly",
+      "name": "Grade 12 Weekly",
+      "tag": "Grade 12",
+      "tagClass": "amber",
+      "pitch": "A Maths teacher who knows your child's name, every Thursday, until the final exam.",
+      "lede": "Every Thursday evening, your Grade 12 learner joins a live, two-hour Mathematics class online, in a group of no more than 10. From February until the NSC exam, the work follows the Grade 12 CAPS syllabus, with the heaviest-weighted exam topics getting the most time.",
+      "forWho": "Grade 12 learners at school who are aiming for a pass or a university-entry mark.",
+      "format": "Online, live, small group",
+      "mode": "online",
+      "dayLabel": "Thursdays",
+      "time": "18:30–20:30",
+      "hours": 2,
+      "cap": 10,
+      "runs": "February until the NSC exam",
+      "billing": {
+        "payments": 10,
+        "months": "January to October",
+        "perMonth": true
+      },
+      "advertised": 4,
+      "adWording": "4 sessions a month, 2 hours each",
+      "rule": {
+        "weekdays": [
+          3
+        ],
+        "ranges": [
+          [
+            "2027-02-01",
+            "2027-10-21"
+          ]
+        ],
+        "termOnly": false
+      },
+      "ruleNote": "The last Thursday is a placeholder until the DBE publishes the 2027 NSC timetable. We confirm the final count once it is out.",
+      "offers": [
+        {
+          "id": "g12",
+          "label": "Grade 12 Weekly",
+          "price": 600,
+          "standard": 750,
+          "unit": "/month",
+          "detail": "Thursdays 18:30–20:30 · Feb until the NSC exam"
+        }
+      ],
+      "includes": [
+        "A live two-hour class every Thursday, with the recording shared afterwards",
+        "Paper 1 and Paper 2 content, sequenced by DBE mark weighting",
+        "Past-paper questions cited by year and paper, so your child sees the real exam format",
+        "Marked homework with voice-note feedback within 48 hours",
+        "A one-page parent report on the last Friday of each month"
+      ],
+      "faq": [
+        [
+          "Which topics are covered?",
+          "The full Grade 12 CAPS Mathematics syllabus. Topics are sequenced by DBE mark weighting, so the sections worth the most marks are taught first and revised most."
+        ],
+        [
+          "What if my child misses a session?",
+          "The recording and the homework pack are shared with them. We don't refund missed sessions."
+        ],
+        [
+          "When does the programme end?",
+          "Thursday classes run until the NSC exam. We confirm the last date once the DBE publishes the 2027 NSC timetable."
+        ],
+        [
+          "Is there extra exam help?",
+          "Yes. The Exam Bootcamp runs in the June and September/October school holidays, and Grade 12 learners can join it."
+        ]
+      ],
+      "related": [
+        "exam-bootcamp",
+        "second-chances"
+      ],
+      "metaDescription": "Live online Grade 12 Mathematics class every Thursday evening, in groups of up to 10. Marked homework with voice-note feedback. R600 a month."
+    },
+    {
+      "id": "sc",
+      "slug": "second-chances",
+      "name": "Second Chances",
+      "tag": "Second Chances",
+      "tagClass": "coral",
+      "pitch": "Rewrite Maths with a plan: Paper 1, Paper 2, then exam practice, in groups of 10.",
+      "lede": "For learners who have already written matric and are rewriting Mathematics. Two live online sessions a week, Monday and Wednesday evenings, taught in a fixed order: a Paper 1 block, a Paper 2 block, then combined revision and timed practice. Two intakes a year, so you can aim at the sitting that suits you.",
+      "forWho": "Learners who wrote matric and are rewriting Mathematics.",
+      "format": "Online, live, small group",
+      "mode": "online",
+      "dayLabel": "Mondays and Wednesdays",
+      "time": "18:30–20:30",
+      "hours": 2,
+      "cap": 10,
+      "runs": "Intake A: February to May · Intake B: July to October",
+      "billing": {
+        "payments": 8,
+        "months": "four payments per intake",
+        "perMonth": true
+      },
+      "advertised": 8,
+      "adWording": "8 sessions a month, 2 hours each (Mon and Wed)",
+      "rule": {
+        "weekdays": [
+          0,
+          2
+        ],
+        "ranges": [
+          [
+            "2027-02-01",
+            "2027-05-31"
+          ],
+          [
+            "2027-07-01",
+            "2027-10-31"
+          ]
+        ],
+        "termOnly": false,
+        "intakes": [
+          [
+            "A",
+            2,
+            5
+          ],
+          [
+            "B",
+            7,
+            10
+          ]
+        ]
+      },
+      "ruleNote": "Intake B's end date is a placeholder until the DBE publishes the 2027 NSC timetable. We confirm the final count once it is out.",
+      "offers": [
+        {
+          "id": "sc-a",
+          "label": "Second Chances, Intake A (Feb–May)",
+          "price": 800,
+          "standard": 1200,
+          "unit": "/month",
+          "detail": "4 monthly payments · Mon and Wed 18:30–20:30"
+        },
+        {
+          "id": "sc-b",
+          "label": "Second Chances, Intake B (Jul–Oct)",
+          "price": 800,
+          "standard": 1200,
+          "unit": "/month",
+          "detail": "4 monthly payments · Mon and Wed 18:30–20:30"
+        }
+      ],
+      "includes": [
+        "Two live two-hour sessions a week, recorded for revision",
+        "A fixed running order: Paper 1 block, Paper 2 block, then combined revision",
+        "Timed, exam-style practice with memos, so you work to the real exam standard",
+        "Foundation gaps taught properly, because rewrite learners often need the basics rebuilt first",
+        "Marked homework with voice-note feedback within 48 hours"
+      ],
+      "blocks": [
+        {
+          "name": "Paper 1 block",
+          "text": "Algebra, functions, calculus, finance and probability, heaviest-weighted topics first."
+        },
+        {
+          "name": "Paper 2 block",
+          "text": "Geometry, trigonometry and statistics, taught after Paper 1 so nothing is revised before it has been taught."
+        },
+        {
+          "name": "Combined revision",
+          "text": "Mixed, timed past-paper practice. Paper 2 is revised before Paper 1, so Paper 1 is freshest when its exam arrives."
+        }
+      ],
+      "compliance": "GeniusEdge's Second Chances Programme is a private, paid programme. It is separate from the free Second Chance Matric Programme run by the Department of Basic Education.",
+      "faq": [
+        [
+          "Is this the free government Second Chance programme?",
+          "No. GeniusEdge's Second Chances Programme is a private, paid programme. It is separate from the free Second Chance Matric Programme run by the Department of Basic Education."
+        ],
+        [
+          "Which intake should I choose?",
+          "Intake A (February to May) finishes before the May/June exam sitting. Intake B (July to October) prepares you for the end-of-year exams. If you're unsure, message us on WhatsApp with your last Maths mark and we'll suggest one."
+        ],
+        [
+          "How is it billed?",
+          "Four monthly payments per intake, on the 1st of each month. Intake A is four payments, and so is Intake B."
+        ],
+        [
+          "Can I join an intake after it has started?",
+          "Message us on WhatsApp. Each intake is capped at 10 seats, and we'll tell you whether there is room and how much has been covered."
+        ]
+      ],
+      "related": [
+        "grade-12-weekly",
+        "exam-bootcamp"
+      ],
+      "metaDescription": "Matric Maths rewrite programme: Paper 1, Paper 2, then exam practice, in live online groups of up to 10. Mon and Wed evenings. R800 a month."
+    },
+    {
+      "id": "g10",
+      "slug": "grade-10-weekly",
+      "name": "Grade 10 Weekly",
+      "tag": "Grade 10",
+      "tagClass": "amber",
+      "pitch": "Grade 10 decides Grade 12. Fix the foundation now, for R550 a month.",
+      "lede": "Every Tuesday evening, your Grade 10 learner joins a live two-hour Mathematics class online, in a group of no more than 10. The class builds the algebra, functions and number skills that Grade 11 and Grade 12 depend on, so gaps get fixed before they get expensive.",
+      "forWho": "Grade 10 learners building the foundation for Mathematics in the FET phase.",
+      "format": "Online, live, small group",
+      "mode": "online",
+      "dayLabel": "Tuesdays",
+      "time": "18:30–20:30",
+      "hours": 2,
+      "cap": 10,
+      "runs": "February to November",
+      "billing": {
+        "payments": 10,
+        "months": "January to October",
+        "perMonth": true
+      },
+      "advertised": 4,
+      "adWording": "4 sessions a month, 2 hours each",
+      "rule": {
+        "weekdays": [
+          1
+        ],
+        "ranges": [
+          [
+            "2027-02-01",
+            "2027-11-30"
+          ]
+        ],
+        "termOnly": false
+      },
+      "ruleNote": null,
+      "offers": [
+        {
+          "id": "g10",
+          "label": "Grade 10 Weekly",
+          "price": 550,
+          "standard": null,
+          "unit": "/month",
+          "detail": "Tuesdays 18:30–20:30 · Feb to Nov"
+        }
+      ],
+      "includes": [
+        "A live two-hour class every Tuesday, with the recording shared afterwards",
+        "Grade 10 CAPS topics in a fixed order, so nothing is skipped",
+        "A worked anchor question from a past paper in every session",
+        "Marked homework with voice-note feedback within 48 hours",
+        "A one-page parent report on the last Friday of each month"
+      ],
+      "faq": [
+        [
+          "Does my child need to be strong at Maths already?",
+          "No. The class is built to strengthen the foundation, so learners at any level are welcome as long as they are in Grade 10."
+        ],
+        [
+          "Online or in person?",
+          "This class is online. If you'd prefer face-to-face teaching, see the Grade 10 Saturday Class."
+        ],
+        [
+          "What if my child misses a session?",
+          "The recording and the homework pack are shared with them. We don't refund missed sessions."
+        ],
+        [
+          "Is Grade 11 covered?",
+          "Not currently. Our 2027 programmes are Grade 10, Grade 12 and matric rewrite Mathematics."
+        ]
+      ],
+      "related": [
+        "grade-10-saturday",
+        "grade-12-weekly"
+      ],
+      "metaDescription": "Live online Grade 10 Mathematics class every Tuesday evening, in groups of up to 10. Marked homework with voice-note feedback. R550 a month."
+    },
+    {
+      "id": "sat",
+      "slug": "grade-10-saturday",
+      "name": "Grade 10 Saturday Class",
+      "tag": "Grade 10 · In person",
+      "tagClass": "amber",
+      "pitch": "Face-to-face Maths every Saturday morning, homework checked every week.",
+      "lede": "For Grade 10 families who want face-to-face teaching. Your child attends a 2.5-hour Mathematics class in person every Saturday morning in term time, in a group of no more than 15, and follows the same topic order as the Tuesday online class.",
+      "forWho": "Grade 10 learners whose parents want face-to-face teaching.",
+      "format": "In person, Johannesburg venue",
+      "mode": "inperson",
+      "dayLabel": "Saturdays",
+      "time": "09:00–11:30",
+      "hours": 2.5,
+      "cap": 15,
+      "runs": "Term time, February to November",
+      "billing": {
+        "payments": 10,
+        "months": "January to October",
+        "perMonth": true
+      },
+      "advertised": 4,
+      "adWording": "Up to 4 sessions a month, 2.5 hours each, in term",
+      "rule": {
+        "weekdays": [
+          5
+        ],
+        "ranges": [
+          [
+            "2027-02-01",
+            "2027-11-30"
+          ]
+        ],
+        "termOnly": true
+      },
+      "ruleNote": "The class runs in term time only, so months that include school holidays have fewer sessions.",
+      "offers": [
+        {
+          "id": "sat",
+          "label": "Grade 10 Saturday Class",
+          "price": 600,
+          "standard": 900,
+          "unit": "/month",
+          "detail": "Saturdays 09:00–11:30 · term time · in person"
+        }
+      ],
+      "includes": [
+        "A 2.5-hour in-person class every Saturday morning in term time",
+        "The same topic order as Grade 10 Weekly, so your child can switch or catch up online",
+        "Weekly practice work that is checked every week",
+        "A one-page parent report on the last Friday of each month"
+      ],
+      "faq": [
+        [
+          "Where is the Saturday class held?",
+          "At a venue in Johannesburg. We share the venue details with enrolled families before the first class."
+        ],
+        [
+          "Why does the page say \"up to 4 sessions\" a month?",
+          "The class runs in term time only. Months that include school holidays have fewer Saturdays, and some months have five. The sessions table on this page shows the actual count for each month."
+        ],
+        [
+          "What if my child misses a Saturday?",
+          "The practice work is shared with them. We don't refund missed sessions."
+        ],
+        [
+          "Can my child join the online class as well?",
+          "Ask us on WhatsApp. The topic order is the same, so the two classes fit together."
+        ]
+      ],
+      "related": [
+        "grade-10-weekly",
+        "grade-12-weekly"
+      ],
+      "metaDescription": "In-person Grade 10 Mathematics class in Johannesburg every Saturday morning in term time, in groups of up to 15. R600 a month."
+    },
+    {
+      "id": "bc",
+      "slug": "exam-bootcamp",
+      "name": "Exam Bootcamp",
+      "tag": "Grade 12 · Second Chances",
+      "tagClass": "coral",
+      "pitch": "Five days. Every exam topic. Past papers marked like the real thing.",
+      "lede": "A five-day online bootcamp in the school holidays before the exams. Three hours a day across every exam topic, with past-paper questions marked the way the real exam is marked. Open to Grade 12 and Second Chances learners. There are two runs in 2027.",
+      "forWho": "Grade 12 and Second Chances learners getting ready for their exams.",
+      "format": "Online, 5 days × 3 hours",
+      "mode": "online",
+      "dayLabel": "Monday to Friday",
+      "time": "3 hours a day",
+      "hours": 3,
+      "cap": 20,
+      "runs": "28 June–2 July and 27 September–1 October 2027",
+      "billing": {
+        "payments": 1,
+        "months": "once-off per run",
+        "perMonth": false
+      },
+      "advertised": 5,
+      "adWording": "5 sessions, 3 hours each (per bootcamp)",
+      "rule": {
+        "weekdays": [],
+        "ranges": [],
+        "termOnly": false
+      },
+      "ruleNote": null,
+      "runsList": [
+        {
+          "label": "June run",
+          "dates": "28 June–2 July 2027",
+          "offer": "bc-jun"
+        },
+        {
+          "label": "September/October run",
+          "dates": "27 September–1 October 2027",
+          "offer": "bc-sep"
+        }
+      ],
+      "offers": [
+        {
+          "id": "bc-jun",
+          "label": "Exam Bootcamp, June (28 Jun–2 Jul)",
+          "price": 500,
+          "standard": 800,
+          "unit": " early bird",
+          "detail": "5 days × 3 hours · online",
+          "bootcamp": true
+        },
+        {
+          "id": "bc-sep",
+          "label": "Exam Bootcamp, Sep/Oct (27 Sep–1 Oct)",
+          "price": 500,
+          "standard": 800,
+          "unit": " early bird",
+          "detail": "5 days × 3 hours · online",
+          "bootcamp": true
+        }
+      ],
+      "includes": [
+        "Five live days of three hours each, across every exam topic",
+        "Past-paper questions cited by year and paper, marked like the real exam",
+        "Paper 1 and Paper 2 revision, each topic taught under the correct paper",
+        "A homework pack for each day"
+      ],
+      "faq": [
+        [
+          "Who can join?",
+          "Grade 12 learners and Second Chances learners. It is built for the weeks before the exam, so it works best for learners who have already covered the syllabus."
+        ],
+        [
+          "What does early bird mean?",
+          "The early-bird price is R500 and the standard price is R800. Message us on WhatsApp if you're unsure which price applies when you enrol."
+        ],
+        [
+          "Can I get a refund?",
+          "Yes, up to 7 days before the bootcamp starts."
+        ],
+        [
+          "Does it replace weekly classes?",
+          "No. It is an exam-preparation sprint that adds to the weekly classes, not a substitute."
+        ]
+      ],
+      "related": [
+        "grade-12-weekly",
+        "second-chances"
+      ],
+      "metaDescription": "Five-day online Mathematics Exam Bootcamp for Grade 12 and matric rewrite learners. Every exam topic, past papers marked like the real thing. From R500."
+    }
+  ],
+  "generalFaq": [
+    [
+      "Which learners do you teach?",
+      "Grade 10, Grade 12 and matric rewrite learners, in Mathematics only. We don't teach Maths Literacy, and we don't currently teach Grade 11."
+    ],
+    [
+      "How big are the groups?",
+      "No more than 10 learners in each online group, 15 in the Saturday class, and 20 in the bootcamp. That is small enough for every learner to be seen and heard."
+    ],
+    [
+      "How do monthly payments work?",
+      "Monthly programmes take ten payments in advance on the 1st, January to October, by card subscription, or by Instant EFT or Capitec Pay against a monthly payment link. Second Chances is four payments per intake. Paying a full term up front earns 10% off."
+    ],
+    [
+      "How do I stop monthly billing?",
+      "Message us on WhatsApp or email us before the 25th of the month, and the next month's debit will not be taken. There are no partial-month refunds."
+    ],
+    [
+      "Do I pay a card fee?",
+      "No. Our prices include card fees, and there is no card surcharge at checkout. Card details are entered only on Paystack's secure checkout, never over WhatsApp or on this website."
+    ],
+    [
+      "When can I enrol and pay?",
+      "The waitlist is open now. Paid enrolment opens on 1 December 2026, and the first sessions run in the week of 1 February 2027."
+    ],
+    [
+      "Is Second Chances the free government programme?",
+      "No. GeniusEdge's Second Chances Programme is a private, paid programme, separate from the free Second Chance Matric Programme run by the Department of Basic Education."
+    ],
+    [
+      "Where are you based?",
+      "Johannesburg. Online classes are open to learners anywhere in South Africa, and the Saturday class is held in person in Johannesburg."
+    ]
+  ]
+}

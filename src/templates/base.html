@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ page_desc }}">
+<link rel="canonical" href="{{ canonical }}">
+{% if noindex %}<meta name="robots" content="noindex">{% endif %}
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_desc }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ canonical }}">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+{% block head %}{% endblock %}
+</head>
+<body{% if body_class %} class="{{ body_class }}"{% endif %}>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap bar">
+    <a class="logo" href="index.html" aria-label="GeniusEdge Tutoring, home">
+      <img src="img/logo.png" width="222" height="48" alt="GeniusEdge Tutoring. Giving you the academic edge.">
+    </a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Main">
+      <a class="navlink" href="index.html#programmes">Programmes</a>
+      <a class="navlink" href="index.html#calendar">2027 calendar</a>
+      <a class="navlink" href="index.html#how">How it works</a>
+      <a class="navlink" href="index.html#faq">FAQ</a>
+      <a class="navlink" href="index.html#contact">Contact</a>
+      <a class="btn btn-coral nav-cta" href="index.html#programmes" data-enrol="">
+        <span class="enrol-label">Join the waitlist</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <img src="img/logo.png" width="200" height="43" alt="GeniusEdge Tutoring" class="foot-logo" loading="lazy">
+      <p class="foot-small">{{ site.legalName }}<br>{{ site.area }}</p>
+    </div>
+    <div>
+      <h2 class="foot-h">Programmes</h2>
+      <ul class="foot-list">
+        {% for q in programmes %}<li><a href="{{ q.slug }}.html">{{ q.name }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2 class="foot-h">Contact</h2>
+      <ul class="foot-list">
+        <li><a href="https://wa.me/{{ site.whatsapp }}" data-wa="general" rel="noopener">WhatsApp {{ site.phone }}</a></li>
+        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        <li><a href="https://www.instagram.com/geniusedget/" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.facebook.com/GeniusedgeT" rel="noopener">Facebook</a></li>
+        <li><a href="https://twitter.com/GeniusedgeT" rel="noopener">Twitter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="foot-h">Policies</h2>
+      <ul class="foot-list">
+        <li><a href="terms.html">Terms and policies</a></li>
+        <li><a href="terms.html#refunds">Refunds</a></li>
+        <li><a href="terms.html#cancel">Cancel monthly billing</a></li>
+        <li><a href="privacy.html">Privacy notice</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-pay">
+    <p class="mono">Payments are processed securely by Paystack. Card details are entered only on Paystack's checkout, never over WhatsApp or on this website. All prices are in South African rand and include card fees.</p>
+  </div>
+  <div class="accent-band"></div>
+  <p class="copyright mono">&copy; <span id="year">2026</span> {{ site.name }}. All rights reserved.</p>
+</footer>
+
+<a class="wa-float" href="https://wa.me/{{ site.whatsapp }}" data-wa="general" target="_blank" rel="noopener" aria-label="Chat with GeniusEdge on WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4 0 .1 0 .6-.3 1.2z"/></svg>
+</a>
+
+<div class="modal-overlay" id="enrolModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="enrolTitle">
+    <button class="modal-close" id="enrolClose" type="button" aria-label="Close">&times;</button>
+    <span class="eyebrow" id="enrolEyebrow">Waitlist</span>
+    <h2 id="enrolTitle">Join the waitlist</h2>
+    <p class="modal-sub">Tell us about your learner. We'll open WhatsApp with these details ready to send, and you press send yourself.</p>
+    <form id="enrolForm" novalidate>
+      <div class="field">
+        <label for="fOffer">Programme</label>
+        <select id="fOffer" name="offer" required></select>
+      </div>
+      <div class="field">
+        <label for="fGrade">Learner's grade</label>
+        <select id="fGrade" name="grade" required>
+          <option value="">Select a grade</option>
+          <option value="10">Grade 10</option>
+          <option value="12">Grade 12</option>
+          <option value="rewrite">Matric rewrite (already wrote matric)</option>
+          <option value="other">Another grade</option>
+        </select>
+      </div>
+      <p class="form-msg" id="fitMsg" role="alert" hidden></p>
+      <div class="field">
+        <label for="fLearner">Learner's name</label>
+        <input id="fLearner" name="learner" type="text" required autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="fParent">Parent or guardian's name</label>
+        <input id="fParent" name="parent" type="text" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="fPhone">Parent's WhatsApp number</label>
+        <input id="fPhone" name="phone" type="tel" inputmode="tel" required autocomplete="tel" placeholder="e.g. 073 000 0000">
+      </div>
+      <div class="field">
+        <label for="fMark">Latest school Maths mark (optional)</label>
+        <input id="fMark" name="mark" type="text" inputmode="numeric" placeholder="e.g. 48%">
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="fConsent" required>
+        <span>I am the learner's parent or guardian (or I am 18 or older), and I agree that GeniusEdge may store these details to contact me about this programme. <a href="privacy.html" target="_blank" rel="noopener">Privacy notice</a></span>
+      </label>
+      <button class="btn btn-coral btn-block" type="submit" id="fSubmit">Send on WhatsApp</button>
+      <p class="modal-note mono">Nothing is submitted until you press send in WhatsApp. Never send card details in chat.</p>
+    </form>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/offers.js"></script>
+<script src="js/site.js" defer></script>
+</body>
+</html>

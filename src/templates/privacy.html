@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% set body_class = "legal-page" %}
+
+{% block content %}
+<section class="legal-hero">
+  <div class="wrap narrow">
+    <span class="eyebrow">Privacy</span>
+    <h1>Privacy notice</h1>
+    <p class="mono updated">Last updated November 2026</p>
+  </div>
+</section>
+
+<section class="legal">
+  <div class="wrap narrow prose">
+
+    <h2>What we collect</h2>
+    <p>When you join the waitlist, enrol or message us, we collect the learner's name and grade, the parent or guardian's name and WhatsApp number or email, and optionally the learner's latest school Maths mark. During a programme we also record attendance, homework submissions and scores, and we record online sessions.</p>
+
+    <h2>Why we collect it</h2>
+    <p>We use this information to contact you about programmes, confirm enrolment and payment, run classes, report on progress, and improve our teaching. We only send correspondence and ad campaigns with your consent.</p>
+
+    <h2>Who handles it</h2>
+    <p>We do not sell your personal information. We use a small number of service providers to run the business:</p>
+    <ul>
+      <li><strong>Paystack</strong> processes payments. Payment data may be stored outside South Africa.</li>
+      <li><strong>Google</strong> (Workspace, Meet and Analytics) and <strong>WhatsApp</strong> run our classes, records and messages. Data may be stored outside South Africa.</li>
+      <li><strong>Meta</strong> (Meta Pixel) and <strong>Google Analytics</strong> measure how our website and adverts perform. They may set cookies in your browser.</li>
+    </ul>
+    <p>Card details are entered only on Paystack's checkout. We never see or store them.</p>
+
+    <h2>Your rights</h2>
+    <p>Under the Protection of Personal Information Act (POPIA) you can ask to see, correct or delete the information we hold about you or your child, and you can withdraw your consent at any time. Message us on WhatsApp at {{ site.phone }} or email <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+
+    <h2>Keeping it safe</h2>
+    <p>We keep learner records in access-controlled systems, share them with tutors only for the programmes they teach, and keep recordings for revision and quality review.</p>
+
+    <p class="note small">See also our <a href="terms.html">terms and policies</a>.</p>
+  </div>
+</section>
+{% endblock %}

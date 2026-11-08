@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% import "macros.html" as m %}
+{% set body_class = "home-page" %}
+
+{% block head %}
+<script type="application/ld+json">
+{{ {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": site.name,
+  "url": site.domain,
+  "email": site.email,
+  "telephone": "+27739689838",
+  "areaServed": "South Africa",
+  "address": {"@type": "PostalAddress", "addressLocality": "Johannesburg", "addressRegion": "Gauteng", "addressCountry": "ZA"},
+  "slogan": site.tagline
+} | tojson }}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="tags">
+      {{ m.tag("Second Chances", "coral") }}
+      {{ m.tag("Grades 10 & 12", "amber") }}
+      {{ m.tag("Mathematics · 2027", "outline") }}
+    </div>
+    <h1>Mathematics, <span>done properly.</span></h1>
+    <p class="sub">Five programmes for 2027, taught in small groups of up to 10. A fixed plan, past-paper practice, and marked homework with voice-note feedback on every submission.</p>
+
+    <div class="hero-actions">
+      <a class="btn btn-coral btn-lg" href="#programmes" data-enrol="">
+        <span class="enrol-label">Join the waitlist</span>
+      </a>
+      <a class="btn btn-ghost btn-lg" href="#programmes">Compare the five programmes</a>
+    </div>
+    <p class="status-pill mono" data-enrol-status>Waitlist open. Paid enrolment opens 1 December 2026.</p>
+
+    <div class="countdown-row">
+      <div class="countdown-block">
+        <div class="num mono" id="cdNum">–</div>
+        <div class="lbl mono" id="cdLbl">days to first session</div>
+      </div>
+      <div class="countdown-block">
+        <div class="num mono">10</div>
+        <div class="lbl mono">learners per online group, at most</div>
+      </div>
+      <div class="countdown-block">
+        <div class="num mono">48h</div>
+        <div class="lbl mono">voice-note homework feedback</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ FIND YOUR PROGRAMME ============ -->
+<section class="finder-section">
+  <div class="wrap">
+    <span class="eyebrow">01 · Find your programme</span>
+    <h2>Where is your learner right now?</h2>
+    <div class="finder">
+      <a class="finder-tile" href="grade-12-weekly.html">
+        <span class="mono finder-k">Grade 12 at school</span>
+        <strong>Grade 12 Weekly</strong>
+        <span>Thursdays online, plus the Exam Bootcamp before exams.</span>
+      </a>
+      <a class="finder-tile" href="second-chances.html">
+        <span class="mono finder-k">Rewriting matric Maths</span>
+        <strong>Second Chances</strong>
+        <span>Mon and Wed online in two intakes, plus the Exam Bootcamp.</span>
+      </a>
+      <a class="finder-tile" href="grade-10-weekly.html">
+        <span class="mono finder-k">Grade 10</span>
+        <strong>Grade 10 Weekly or Saturday</strong>
+        <span>Tuesdays online, or Saturday mornings in person.</span>
+      </a>
+    </div>
+    <p class="note small">We teach <strong>Mathematics</strong> only (not Maths Literacy), for Grade 10, Grade 12 and matric rewrite learners.</p>
+  </div>
+</section>
+
+<!-- ============ PROGRAMMES ============ -->
+<section id="programmes" class="band-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">02 · The five programmes</span>
+      <h2>One subject. Five ways to learn it.</h2>
+      <p>Every programme has a fixed schedule, a set price and a seat cap, so you know what you are getting before you pay.</p>
+    </div>
+
+    <div class="programmes-grid">
+      {% for p in programmes %}
+      <article class="prog-card" id="card-{{ p.id }}">
+        <div class="prog-top">
+          {{ m.tag(p.tag, p.tagClass) }}
+          <h3><a href="{{ p.slug }}.html">{{ p.name }}</a></h3>
+          <p class="pitch">{{ p.pitch }}</p>
+          <ul class="facts mono">
+            <li>{{ p.dayLabel }}, {{ p.time }}</li>
+            <li>{{ p.format }}</li>
+            <li>Up to {{ p.cap }} learners</li>
+          </ul>
+        </div>
+        {{ m.price_block(p.offers[0]) }}
+        <div class="card-cta">
+          <a class="btn btn-coral btn-block" href="{{ p.slug }}.html#enrol"
+             {% if p.offers|length == 1 %}data-enrol="{{ p.offers[0].id }}"{% endif %}>
+            {% if p.offers|length == 1 %}<span class="enrol-label">Join the waitlist</span>{% else %}{{ "Choose your intake" if p.id == "sc" else "Choose your run" }}{% endif %}
+          </a>
+          <a class="card-link" href="{{ p.slug }}.html">See details and sessions per month</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="note small">2027 founding rates shown, with the standard rate beside them where it is higher. Founding families keep their rate for their programme year.</p>
+  </div>
+</section>
+
+<!-- ============ PROMISE ============ -->
+<section class="promise-section">
+  <div class="wrap">
+    <div class="stat-bar">
+      <div class="stat">
+        <div class="num mono">Small</div>
+        <div class="lbl">groups of 10 or fewer, so every learner is seen</div>
+      </div>
+      <div class="stat">
+        <div class="num mono">Fixed</div>
+        <div class="lbl">plan, sequenced by DBE mark weighting</div>
+      </div>
+      <div class="stat">
+        <div class="num mono">Past</div>
+        <div class="lbl">papers in every session, cited by year and paper</div>
+      </div>
+      <div class="stat">
+        <div class="num mono">Marked</div>
+        <div class="lbl">homework with a voice note, within 48 hours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALENDAR ============ -->
+<section id="calendar">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap rel">
+    <div class="section-head">
+      <span class="eyebrow">03 · The 2027 calendar</span>
+      <h2>When everything runs.</h2>
+      <p>Classes start in the week of 1 February, three weeks after schools open, and the two bootcamps sit in the June and September school holidays.</p>
+    </div>
+
+    <div class="timeline" role="img" aria-label="2027 timeline of programmes against school terms">
+      <div class="tl-axis">
+        <div class="tl-label"></div>
+        <div class="tl-track tl-months">
+          {% for mo in timeline.months %}<span class="mono">{{ mo }}</span>{% endfor %}
+        </div>
+      </div>
+      <div class="tl-row tl-terms">
+        <div class="tl-label mono">School terms</div>
+        <div class="tl-track">
+          {% for t in timeline.terms %}<span class="tl-bar term" style="left:{{ t.left }}%;width:{{ t.width }}%"><b class="mono">{{ t.id }}</b></span>{% endfor %}
+        </div>
+      </div>
+      {% for r in timeline.rows %}
+      <div class="tl-row">
+        <a class="tl-label" href="{{ r.slug }}.html">{{ r.name }}</a>
+        <div class="tl-track">
+          {% for b in r.bars %}<span class="tl-bar {{ b.cls }}" style="left:{{ b.left }}%;width:{{ b.width }}%">{% if b.label %}<b class="mono">{{ b.label }}</b>{% endif %}</span>{% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="note small">School terms follow the 2027 DBE calendar. Grade 12 and Second Chances Intake B end dates move to the week before Mathematics Paper 1 once the DBE publishes the 2027 NSC timetable.</p>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" class="band-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">04 · How it works</span>
+      <h2>From first message to first session.</h2>
+    </div>
+    <ol class="steps">
+      <li><span class="step-n mono">1</span><div><h3>Choose</h3><p>Pick the programme that matches your learner's grade and goal.</p></div></li>
+      <li><span class="step-n mono">2</span><div><h3>Join the waitlist</h3><p>Send us your learner's details. Paid enrolment opens on 1 December 2026.</p></div></li>
+      <li><span class="step-n mono">3</span><div><h3>Pay securely</h3><p>Pay on Paystack by card, Instant EFT or Capitec Pay. Monthly programmes bill on the 1st.</p></div></li>
+      <li><span class="step-n mono">4</span><div><h3>Get your welcome pack</h3><p>You receive the timetable, class link and WhatsApp group invite.</p></div></li>
+      <li><span class="step-n mono">5</span><div><h3>Learn every week</h3><p>Live class, homework on WhatsApp, voice-note feedback, and a monthly parent report.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap narrow">
+    <span class="eyebrow">05 · FAQ</span>
+    <h2>Before you message us</h2>
+    {{ m.faq(general_faq) }}
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="cta-section">
+  <div class="wrap">
+    <div class="contact-band">
+      <span class="eyebrow light">06 · Get in touch</span>
+      <h2>Every group is capped, so seats are limited.</h2>
+      <p>Join the waitlist and we'll contact you on WhatsApp before paid enrolment opens on 1 December 2026.</p>
+      <div class="cta-row">
+        <a class="btn btn-coral btn-lg" href="#programmes" data-enrol=""><span class="enrol-label">Join the waitlist</span></a>
+        <a class="btn btn-ghost-light btn-lg" href="https://wa.me/{{ site.whatsapp }}" data-wa="general" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+      <div class="contact-methods mono">
+        <a href="tel:+27739689838">{{ site.phone }}</a>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

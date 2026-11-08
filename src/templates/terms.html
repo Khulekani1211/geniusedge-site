@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% set body_class = "legal-page" %}
+
+{% block content %}
+<section class="legal-hero">
+  <div class="wrap narrow">
+    <span class="eyebrow">Policies</span>
+    <h1>Terms and policies</h1>
+    <p class="mono updated">Applies to the 2027 programmes · last updated November 2026</p>
+    <nav class="toc" aria-label="On this page">
+      <a href="#who">Who we are</a>
+      <a href="#fees">Fees and billing</a>
+      <a href="#cancel">Cancel billing</a>
+      <a href="#refunds">Refunds</a>
+      <a href="#missed">Missed sessions</a>
+      <a href="#delivery">Delivery</a>
+      <a href="#conduct">Conduct</a>
+      <a href="#complaints">Complaints</a>
+    </nav>
+  </div>
+</section>
+
+<section class="legal">
+  <div class="wrap narrow prose">
+
+    <h2 id="who">1. Who we are</h2>
+    <p>{{ site.legalName }}, trading as {{ site.name }}, provides small-group Mathematics tutoring for Grade 10, Grade 12 and matric rewrite learners. We are based in {{ site.area }}.</p>
+    <ul>
+      {% if site.address %}<li>Address: {{ site.address }}</li>{% endif %}
+      <li>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+      <li>Phone and WhatsApp: <a href="tel:+27739689838">{{ site.phone }}</a></li>
+    </ul>
+    <p>Our programmes are Grade 12 Weekly, Second Chances, Grade 10 Weekly, the Grade 10 Saturday Class and the Exam Bootcamp. Each programme page lists the schedule, group size and price. Group sizes are capped at 10 learners for online programmes, 15 for the Saturday class and 20 for the bootcamp.</p>
+
+    <h2 id="fees">2. Fees and billing</h2>
+    <ul>
+      <li>All prices are in South African rand and include card fees. There is no card surcharge at checkout.</li>
+      <li>Grade 12 Weekly, Grade 10 Weekly and the Grade 10 Saturday Class take ten monthly payments in advance on the 1st of the month, January to October.</li>
+      <li>Second Chances takes four monthly payments per intake, on the 1st of the month.</li>
+      <li>The Exam Bootcamp is a single payment per run.</li>
+      <li>You can pay by card subscription, or by Instant EFT or Capitec Pay against a monthly payment link. Paying a full term up front on the monthly programmes earns 10% off.</li>
+      <li>Payments are processed by Paystack. Card details are entered only on Paystack's checkout and are never taken over WhatsApp, by email or on this website.</li>
+      <li>The number of sessions in a month depends on the calendar. Each programme page shows the sessions in every month of 2027, so you can see what each payment covers before you pay.</li>
+    </ul>
+
+    <h2 id="cancel">3. How to stop monthly billing</h2>
+    <p>You can cancel at any time. To stop the next month's debit, tell us before the 25th of the month by sending a WhatsApp message to {{ site.phone }} or an email to <a href="mailto:{{ site.email }}">{{ site.email }}</a>. Include the learner's name and the programme. We cancel the subscription on Paystack and confirm by message. There are no partial-month refunds.</p>
+
+    <h2 id="refunds">4. Refunds</h2>
+    <ul>
+      <li>Monthly programmes: a full refund if you cancel before the first session.</li>
+      <li>Exam Bootcamp: a refund up to 7 days before the bootcamp starts.</li>
+      <li>We do not refund missed sessions.</li>
+    </ul>
+
+    <h2 id="missed">5. Missed sessions and unpaid fees</h2>
+    <ul>
+      <li>If a learner misses a session, we share the recording and the homework pack.</li>
+      <li>If a payment is unpaid for 7 days, access to the programme pauses. It resumes as soon as the payment is made.</li>
+    </ul>
+
+    <h2 id="delivery">6. Delivery</h2>
+    <ul>
+      <li>Online programmes: after payment, you receive a welcome pack by email and WhatsApp with the timetable, the class link and the WhatsApp group invite. Each group keeps one class link all year.</li>
+      <li>Grade 10 Saturday Class: taught in person at a Johannesburg venue. We share the venue details with enrolled families before the first class.</li>
+      <li>Homework is submitted on WhatsApp, and we return voice-note feedback within 48 hours.</li>
+    </ul>
+
+    <h2 id="conduct">7. Conduct, recordings and privacy</h2>
+    <p>We expect learners to keep their cameras on in online classes and to be respectful in chat. Online sessions are recorded for revision and quality review. We store learner information and recordings only with the parent or guardian's consent, as described in our <a href="privacy.html">privacy notice</a>.</p>
+
+    <h2 id="compliance">8. Second Chances is a private programme</h2>
+    <p>GeniusEdge's Second Chances Programme is a private, paid programme. It is separate from the free Second Chance Matric Programme run by the Department of Basic Education.</p>
+
+    <h2 id="complaints">9. Complaints and suggestions</h2>
+    <p>Send complaints and suggestions to <a href="mailto:{{ site.email }}">{{ site.email }}</a> or on WhatsApp. We respond to each one individually.</p>
+
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{# Shared pieces used by the home page and the programme template #}
+
+{% macro tag(text, cls) -%}
+<span class="tag {{ cls }}">{{ text }}</span>
+{%- endmacro %}
+
+{% macro price_block(o) -%}
+<div class="price-strip">
+  <span class="amount mono">R{{ "{:,}".format(o.price) }}</span>
+  <span class="per mono">{{ o.unit }}</span>
+  {% if o.standard %}<span class="std mono">standard R{{ "{:,}".format(o.standard) }}{% if not o.bootcamp %} from 2028{% endif %}</span>{% endif %}
+</div>
+{%- endmacro %}
+
+{% macro faq(items) -%}
+<div class="faq-list">
+  {% for q, a in items %}
+  <details class="faq-item">
+    <summary>{{ q }}</summary>
+    <p>{{ a }}</p>
+  </details>
+  {% endfor %}
+</div>
+{%- endmacro %}

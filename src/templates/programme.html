@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+{% import "macros.html" as m %}
+{% set body_class = "programme-page" %}
+
+{% block head %}
+<script type="application/ld+json">
+{{ {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": p.name ~ " (Mathematics, 2027)",
+  "description": p.pitch,
+  "provider": {"@type": "Organization", "name": site.name, "url": site.domain, "telephone": "+27739689838", "email": site.email},
+  "offers": [{"@type": "Offer", "priceCurrency": "ZAR", "price": p.offers[0].price, "category": p.name}]
+} | tojson }}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============ HERO ============ -->
+<section class="hero prog-hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap hero-split">
+    <div class="hero-copy">
+      <p class="crumbs mono"><a href="index.html#programmes">All programmes</a> / {{ p.name }}</p>
+      <div class="tags">
+        {{ m.tag(p.tag, p.tagClass) }}
+        {{ m.tag("Mathematics · 2027", "outline") }}
+      </div>
+      <h1>{{ p.name }}</h1>
+      <p class="pitch">{{ p.pitch }}</p>
+      <p class="lede">{{ p.lede }}</p>
+      <p class="for-who"><strong>Who it is for:</strong> {{ p.forWho }}</p>
+    </div>
+
+    <aside class="ticket" id="enrol" aria-label="Programme details and enrolment">
+      <dl class="ticket-rows mono">
+        <div><dt>When</dt><dd>{{ p.dayLabel }}, {{ p.time }}</dd></div>
+        <div><dt>Format</dt><dd>{{ p.format }}</dd></div>
+        <div><dt>Group size</dt><dd>Up to {{ p.cap }} learners</dd></div>
+        <div><dt>Runs</dt><dd>{{ p.runs }}</dd></div>
+      </dl>
+      {% for o in p.offers %}
+      <div class="ticket-offer">
+        {{ m.price_block(o) }}
+        <p class="offer-detail mono">{% if p.offers|length > 1 %}<strong>{{ o.label.split(', ')[1] if ', ' in o.label else o.label }}</strong> · {% endif %}{{ o.detail }}</p>
+        <a class="btn btn-coral btn-block" href="#enrol" data-enrol="{{ o.id }}">
+          <span class="enrol-label">Join the waitlist</span>{% if p.offers|length > 1 %} <span class="btn-sub">· {{ o.label.split(', ')[1] if ', ' in o.label else o.label }}</span>{% endif %}
+        </a>
+        <p class="seats mono" data-seats="{{ o.id }}" data-cap="{{ p.cap }}">Capped at {{ p.cap }} seats</p>
+      </div>
+      {% endfor %}
+      <p class="ticket-foot mono"><span class="status-line" data-enrol-status>Paid enrolment opens 1 December 2026.</span></p>
+      <a class="ask-link" href="https://wa.me/{{ site.whatsapp }}" data-wa="{{ p.id }}" target="_blank" rel="noopener">Have a question first? Ask on WhatsApp</a>
+    </aside>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ WHAT YOU GET ============ -->
+<section>
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow">01 · What your child gets</span>
+      <h2>Small groups, a fixed plan, feedback on every homework.</h2>
+      <ul class="check-list">
+        {% for item in p.includes %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+    </div>
+    <div class="card pack-card">
+      <span class="eyebrow">Every session follows the same four parts</span>
+      <ol class="pack-steps">
+        <li><strong>Key concepts checklist.</strong> What your child needs to know, on one page.</li>
+        <li><strong>Worked anchor question.</strong> A past-paper question, solved step by step.</li>
+        <li><strong>Guided live practice.</strong> Your child works while the tutor watches and steps in.</li>
+        <li><strong>Homework pack.</strong> Submitted on WhatsApp, with voice-note feedback within 48 hours.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% if p.blocks %}
+<!-- ============ PROGRAMME-SPECIFIC: BLOCKS ============ -->
+<section class="band-section">
+  <div class="wrap">
+    <span class="eyebrow">02 · The running order</span>
+    <h2>Taught in order, so nothing is revised before it has been taught.</h2>
+    <div class="blocks">
+      {% for b in p.blocks %}
+      <div class="block-card b{{ loop.index }}">
+        <span class="block-n mono">{{ loop.index }}</span>
+        <h3>{{ b.name }}</h3>
+        <p>{{ b.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% if p.compliance %}
+    <p class="compliance mono">{{ p.compliance }}</p>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ============ SESSIONS AND PAYMENTS ============ -->
+<section id="sessions">
+  <div class="wrap">
+    <span class="eyebrow">{{ "03" if p.blocks else "02" }} · Sessions and payments</span>
+    <h2>Exactly what each payment covers.</h2>
+
+    {% if p.runsList %}
+    <div class="run-grid">
+      {% for r in p.runsList %}
+      <div class="card run-card">
+        <span class="tag coral">{{ r.label }}</span>
+        <p class="run-dates">{{ r.dates }}</p>
+        <p class="mono">5 sessions · 3 hours each · {{ p.dayLabel }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="note">Each run is a single payment: <strong>R500 early bird</strong> or <strong>R800 standard</strong>. Refunds are available up to 7 days before the bootcamp starts.</p>
+    {% else %}
+    <p class="note"><strong>{{ p.adWording }}.</strong>
+      Over 2027 there are {{ p.total }} sessions across {{ p.billing.payments }} payments, an average of {{ p.avg }} per payment.
+      The chips below show the real count for each month.</p>
+
+    {% if p.intakeTotals %}
+      {% for it in p.intakeTotals %}
+      <h3 class="chips-h">Intake {{ it.name }} · {{ it.total }} sessions</h3>
+      <div class="chips">
+        {% for c in it.chips %}<div class="chip{% if c.off %} off{% endif %}"><span class="chip-m mono">{{ c.label }}</span><span class="chip-n mono">{{ c.n }}</span></div>{% endfor %}
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="chips">
+        {% for c in p.monthChips %}<div class="chip{% if c.off %} off{% endif %}"><span class="chip-m mono">{{ c.label }}</span><span class="chip-n mono">{{ c.n }}</span></div>{% endfor %}
+      </div>
+    {% endif %}
+    <p class="legend mono"><span class="chip-key"></span> Outlined months differ from the usual {{ p.advertised }}: {{ p.offMonths or "none" }}.</p>
+    {% if p.ruleNote %}<p class="note small">{{ p.ruleNote }}</p>{% endif %}
+    {% endif %}
+
+    <div class="pay-grid">
+      <div class="card">
+        <h3>How you pay</h3>
+        <ul class="plain">
+          {% if p.billing.perMonth %}
+          <li>{% if p.id == "sc" %}Four monthly payments per intake, taken on the 1st.{% else %}{{ p.billing.payments }} monthly payments in advance on the 1st, {{ p.billing.months }}.{% endif %}</li>
+          {% else %}
+          <li>One payment per run, made when you enrol.</li>
+          {% endif %}
+          <li>Pay by card subscription, or by Instant EFT or Capitec Pay against a monthly payment link.</li>
+          {% if p.id in ["g12", "g10", "sat"] %}<li>Pay a full term up front and save 10%.</li>{% endif %}
+          <li>Prices include card fees. There is no card surcharge.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>If plans change</h3>
+        <ul class="plain">
+          {% if p.billing.perMonth %}
+          <li>Stop billing at any time. Message us before the 25th and the next month's debit is not taken. <a href="terms.html#cancel">How to cancel</a></li>
+          <li>Full refund if you cancel before the first session.</li>
+          {% else %}
+          <li>Full refund up to 7 days before the bootcamp starts. <a href="terms.html#refunds">Refund policy</a></li>
+          {% endif %}
+          <li>Missed a session? The recording and homework pack are shared with you.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="band-section">
+  <div class="wrap narrow">
+    <span class="eyebrow">Questions parents ask</span>
+    <h2>About {{ p.name }}</h2>
+    {{ m.faq(p.faq) }}
+    <p class="note small">More questions? <a href="index.html#faq">See the full FAQ</a> or <a href="https://wa.me/{{ site.whatsapp }}" data-wa="{{ p.id }}" target="_blank" rel="noopener">ask us on WhatsApp</a>.</p>
+  </div>
+</section>
+
+<!-- ============ RELATED ============ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Also in 2027</span>
+    <h2>Other programmes</h2>
+    <div class="mini-grid">
+      {% for r in related %}
+      <a class="mini-card" href="{{ r.slug }}.html">
+        {{ m.tag(r.tag, r.tagClass) }}
+        <h3>{{ r.name }}</h3>
+        <p>{{ r.pitch }}</p>
+        <span class="mono mini-price">{{ r.priceText }}{{ r.offers[0].unit }}</span>
+      </a>
+      {% endfor %}
+      <a class="mini-card all" href="index.html#programmes">
+        <h3>See all five programmes</h3>
+        <p>Compare days, formats and prices side by side.</p>
+        <span class="mono mini-price">View all &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="cta-section">
+  <div class="wrap">
+    <div class="contact-band">
+      <h2>Seats in {{ p.name }} are capped at {{ p.cap }}.</h2>
+      <p>Join the waitlist now and we'll contact you on WhatsApp before paid enrolment opens.</p>
+      <div class="cta-row">
+        {% if p.offers|length > 1 %}<a class="btn btn-coral" href="#enrol">{{ "Choose your intake" if p.id == "sc" else "Choose your run" }}</a>{% else %}<a class="btn btn-coral" href="#enrol" data-enrol="{{ p.offers[0].id }}"><span class="enrol-label">Join the waitlist</span></a>{% endif %}
+        <a class="btn btn-ghost-light" href="https://wa.me/{{ site.whatsapp }}" data-wa="{{ p.id }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile sticky bar -->
+<div class="sticky-bar" aria-hidden="false">
+  <div class="sticky-price mono"><strong>{{ p.priceText }}</strong><span>{{ p.offers[0].unit }}</span></div>
+  {% if p.offers|length > 1 %}<a class="btn btn-coral" href="#enrol">{{ "Choose your intake" if p.id == "sc" else "Choose your run" }}</a>{% else %}<a class="btn btn-coral" href="#enrol" data-enrol="{{ p.offers[0].id }}"><span class="enrol-label">Join the waitlist</span></a>{% endif %}
+</div>
+
+{% endblock %}
