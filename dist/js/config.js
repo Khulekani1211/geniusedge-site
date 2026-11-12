@@ -30,6 +30,13 @@ window.GE_CONFIG = {
     "bc-sep": ""    // Exam Bootcamp, September/October
   },
 
+
+    /* Lead capture. Paste the web app address from your Google Apps Script deployment
+     (see apps-script/SETUP.md). While empty, the form only opens WhatsApp, as before.
+     leadsKey must match SHARED_KEY in Code.gs; it only filters casual spam, it is not a secret. */
+   leadsUrl: "",
+   leadsKey: "",
+
   /* Optional live "seats left". A Google Apps Script web app that returns JSON
      like {"g12": 4, "sc-a": 10, "sat": 12}. Leave empty to show seat caps only. */
   seatsUrl: "",
