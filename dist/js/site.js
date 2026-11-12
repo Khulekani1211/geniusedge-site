@@ -171,8 +171,18 @@
       fit.hidden = !msg; fit.textContent = msg;
       return !msg;
     }
-    selOffer.addEventListener("change", checkFit);
-    selGrade.addEventListener("change", checkFit);
+    /* Rewrite learners are usually over 18 and are the main contact, so the parent is optional for them. */
+    var fParent = $("#fParent");
+    function learnerLed() { return /^sc-/.test(selOffer.value) || selGrade.value === "rewrite"; }
+    function adaptContact() {
+      var led = learnerLed();
+      $("#lParent").textContent = led ? "Parent or guardian's name (optional)" : "Parent or guardian's name";
+      $("#lPhone").textContent = led ? "Your WhatsApp number" : "Parent's WhatsApp number";
+      fParent.required = !led;
+      if (led) fParent.classList.remove("bad");
+    }
+    selOffer.addEventListener("change", function () { checkFit(); adaptContact(); });
+    selGrade.addEventListener("change", function () { checkFit(); adaptContact(); });
 
     window.openModal = function (id) {
       lastFocus = document.activeElement;
@@ -180,10 +190,11 @@
       var isOpen = S === "open";
       $("#enrolTitle").textContent = isOpen ? "Enrol your learner" : "Join the waitlist";
       $("#enrolEyebrow").textContent = isOpen ? "Enrol" : "Waitlist";
+      $("#fSubmit").textContent = leadsOn() ? (isOpen ? "Enrol & open WhatsApp" : "Join & open WhatsApp") : "Send on WhatsApp";
       modal.hidden = false;
       document.body.style.overflow = "hidden";
       (id ? $("#fGrade") : selOffer).focus();
-      checkFit();
+      checkFit(); adaptContact();
       ga("enrol_modal_open", { offer: id || "unspecified", state: S });
     };
     function closeModal() {
@@ -194,11 +205,38 @@
     modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
 
+    /* Waitlist lead capture: the lead is saved to a Google Sheet (via an Apps Script web app set in
+       config.js as leadsUrl) AND WhatsApp opens with a pre-filled message, so the conversation starts
+       and the lead is never lost if the parent does not press send. If leadsUrl is empty the form
+       behaves as before and only opens WhatsApp. */
+    var note = $(".modal-note"), submitBtn = $("#fSubmit");
+    function leadsOn() { return !!CFG.leadsUrl; }
+    function newLeadId() { return "GE-" + (Date.now().toString(36) + Math.random().toString(36).slice(2, 5)).toUpperCase(); }
+    function saveLead(lead) {
+      if (!leadsOn()) return;
+      /* text/plain + no-cors keeps this a "simple" request, which Apps Script accepts without a CORS preflight.
+         keepalive lets it finish even though WhatsApp opens in another tab. Failures never block WhatsApp. */
+      safe(function () {
+        fetch(CFG.leadsUrl, {
+          method: "POST", mode: "no-cors", keepalive: true,
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(lead)
+        }).catch(function () { /* the WhatsApp message still carries every detail and the reference */ });
+      });
+    }
+    if (note) note.textContent = leadsOn()
+      ? "When you press the button we save these details to our waitlist and open WhatsApp with a message ready to send. Never send card details in chat."
+      : "Nothing is submitted until you press send in WhatsApp. Never send card details in chat.";
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      /* Honeypot: real people never see or fill this field. Bots do. Pretend success and do nothing. */
+      var hp = $("#fWebsite");
+      if (hp && hp.value) { form.reset(); closeModal(); return; }
+
       var ok = true;
       ["fOffer", "fGrade", "fLearner", "fParent", "fPhone"].forEach(function (id) {
-        var el = document.getElementById(id), bad = !el.value.trim();
+        var el = document.getElementById(id), bad = !el.value.trim() && !(id === "fParent" && learnerLed());
         el.classList.toggle("bad", bad); if (bad) ok = false;
       });
       var digits = $("#fPhone").value.replace(/\D/g, "");
@@ -208,22 +246,36 @@
       if (!checkFit()) return;
 
       var o = offerById[selOffer.value];
+      var led = learnerLed(), parent = $("#fParent").value.trim(), phone = $("#fPhone").value.trim();
+      var mark = $("#fMark").value.trim(), learner = $("#fLearner").value.trim();
+      var leadId = newLeadId();
+
       var lines = [
         (S === "open" ? "Enrolment request" : "Waitlist request") + " for 2027:",
         "Programme: " + o.label,
-        "Learner: " + $("#fLearner").value.trim() + " (" + (GRADE_NAME[selGrade.value] || selGrade.value) + ")",
-        "Parent: " + $("#fParent").value.trim(),
-        "Parent WhatsApp: " + $("#fPhone").value.trim()
+        "Learner: " + learner + " (" + (GRADE_NAME[selGrade.value] || selGrade.value) + ")"
       ];
-      var mark = $("#fMark").value.trim(); if (mark) lines.push("Latest Maths mark: " + mark);
+      if (led) { lines.push("Learner WhatsApp: " + phone); if (parent) lines.push("Parent/guardian: " + parent); }
+      else { lines.push("Parent: " + parent); lines.push("Parent WhatsApp: " + phone); }
+      if (mark) lines.push("Latest Maths mark: " + mark);
       if (adSource) lines.push("Source: " + adSource);
+      lines.push("Ref: " + leadId);
+
+      /* Open WhatsApp FIRST and synchronously: browsers only allow pop-ups from the click itself. */
+      window.open(waUrl(lines.join("\n")), "_blank", "noopener");
+
+      saveLead({
+        id: leadId, offerId: o.id, programme: o.label, grade: selGrade.value,
+        learner: learner, parent: parent, phone: phone, contactType: led ? "learner" : "parent",
+        mark: mark, consent: true, state: S, source: adSource || src || "direct",
+        page: window.location.pathname, key: CFG.leadsKey || "", website: ""
+      });
 
       /* The Lead event is what Meta optimises ad delivery towards. */
       fb("Lead", { content_name: o.label, value: o.price, currency: "ZAR" });
       ga("generate_lead", { offer: o.id, state: S, value: o.price, currency: "ZAR" });
 
-      window.open(waUrl(lines.join("\n")), "_blank", "noopener");
-      form.reset(); fit.hidden = true; closeModal();
+      form.reset(); adaptContact(); fit.hidden = true; closeModal();
     });
 
     /* Ad visitors get the form once per session, after the page has had a moment to show. */
