@@ -1,0 +1,17 @@
+flowchart TD
+  A(["Page loads<br/>site.js runs"]) --> B{"forceState<br/>set in config.js?"}
+  B -- "open / waitlist" --> S["Use that state"]
+  B -- "empty" --> C{"Now is on or after<br/>enrolOpens (1 Dec 2026)?"}
+  C -- "no" --> W["State = waitlist"]
+  C -- "yes" --> O["State = open"]
+  S --> D
+  W --> D
+  O --> D{"Button clicked:<br/>state open AND<br/>Paystack slug set?"}
+  D -- "yes" --> PAY["Label: Pay and enrol<br/>Opens paystack.com/pay/slug"]
+  D -- "no" --> FORM["Label: Join the waitlist<br/>Opens the lead form"]
+  PAY --> OK["Paystack redirects to<br/>success.html?offer=id<br/>Purchase event fires once"]
+  FORM --> LEAD["WhatsApp opens +<br/>lead saved to the sheet"]
+  classDef start fill:#14213D,color:#FBF9F4,stroke:#14213D;
+  classDef pay fill:#F2A93B,stroke:#14213D,color:#14213D;
+  classDef wait fill:#E4572E,stroke:#14213D,color:#fff;
+  class A start; class PAY,OK pay; class FORM,LEAD wait;

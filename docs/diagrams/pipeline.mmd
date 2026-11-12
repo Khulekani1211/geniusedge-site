@@ -1,0 +1,21 @@
+flowchart LR
+  subgraph SRC["src/  (you edit)"]
+    D["data/programmes.json<br/>site, terms, 5 programmes,<br/>offers, FAQs"]
+    T["templates/*.html<br/>base, macros, programme,<br/>home, terms, privacy, success"]
+  end
+  B{{"build.py<br/>1 load  2 enrich<br/>3 validate  4 render  5 write"}}
+  subgraph OUT["dist/  (you upload)"]
+    H["9 HTML pages<br/>+ 2 redirect stubs"]
+    G["sitemap.xml<br/>robots.txt<br/>js/offers.js"]
+    S["css/site.css<br/>js/site.js<br/>js/config.js<br/>img/  (hand-written)"]
+  end
+  D --> B
+  T --> B
+  B --> H
+  B --> G
+  S -.->|"read by every page"| H
+  classDef edit fill:#FBF9F4,stroke:#14213D,stroke-width:2px,color:#14213D;
+  classDef gen fill:#14213D,stroke:#14213D,color:#FBF9F4;
+  classDef hand fill:#F2A93B,stroke:#14213D,color:#14213D;
+  classDef core fill:#E4572E,stroke:#14213D,color:#fff;
+  class D,T edit; class H,G gen; class S hand; class B core;

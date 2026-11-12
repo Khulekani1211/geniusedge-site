@@ -1,0 +1,17 @@
+sequenceDiagram
+  autonumber
+  actor P as Parent or learner
+  participant F as Site form (site.js)
+  participant W as WhatsApp
+  participant G as Apps Script web app
+  participant S as Google Sheet and email
+  actor K as GeniusEdge (you)
+  P->>F: Fills the form and presses the button
+  F->>F: Checks fields, consent, grade fits programme
+  F->>W: Opens wa.me with a pre-filled message and Ref
+  F-)G: POST lead as JSON (same Ref, no waiting)
+  G->>G: Validates key, consent, offer, lengths
+  G->>S: Appends a row and emails you
+  P->>W: Presses send (optional for the sheet)
+  W->>K: Message arrives with the same Ref
+  K->>P: Replies on WhatsApp, row status updated by hand

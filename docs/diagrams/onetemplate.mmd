@@ -1,0 +1,23 @@
+flowchart LR
+  subgraph DATA["programmes.json"]
+    P1["g12<br/>Grade 12 Weekly"]
+    P2["sc<br/>Second Chances"]
+    P3["g10<br/>Grade 10 Weekly"]
+    P4["sat<br/>Grade 10 Saturday"]
+    P5["bc<br/>Exam Bootcamp"]
+  end
+  TPL(["programme.html<br/>ONE template<br/>extends base.html"])
+  P1 --> TPL
+  P2 --> TPL
+  P3 --> TPL
+  P4 --> TPL
+  P5 --> TPL
+  TPL --> O1["grade-12-weekly.html"]
+  TPL --> O2["second-chances.html"]
+  TPL --> O3["grade-10-weekly.html"]
+  TPL --> O4["grade-10-saturday.html"]
+  TPL --> O5["exam-bootcamp.html"]
+  classDef rec fill:#FBF9F4,stroke:#14213D,stroke-width:2px,color:#14213D;
+  classDef tpl fill:#E4572E,stroke:#14213D,stroke-width:2px,color:#fff;
+  classDef out fill:#14213D,stroke:#14213D,color:#FBF9F4;
+  class P1,P2,P3,P4,P5 rec; class TPL tpl; class O1,O2,O3,O4,O5 out;
