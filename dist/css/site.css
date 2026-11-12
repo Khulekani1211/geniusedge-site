@@ -317,6 +317,7 @@ a.tl-label:hover{color:var(--coral)}
 .consent input{margin-top:4px;flex:none;width:18px;height:18px;accent-color:var(--coral)}
 .form-msg{background:#fff;border:2px solid var(--coral);border-radius:var(--r);padding:10px 12px;font-size:.88rem;color:var(--navy);margin:0 0 14px}
 .form-msg[hidden]{display:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .modal-note{font-size:.7rem;text-align:center;margin:12px 0 0;color:var(--soft)}
 
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
